@@ -1,4 +1,4 @@
-package questions;
+package map;
 
 import java.util.LinkedList;
 

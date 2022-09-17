@@ -112,3 +112,19 @@ class Basics {
         });
 	}
 }
+
+/* String vs StringBuffer vs StringBuilder
+ * String is immutable -> String Buffer & String Builder are mutable
+ * StringBuffer is synchronized -> StringBuilder is non synchronized
+ * 
+ * Concat() method takes only one argument and concatenates with other string, creates a new string
+ * + operator takes any number of argument and creates a new string
+ * StringBuffer append() doesn't create a new string.
+ * 
+ * Immutable class are thread safe
+ * How to create an immutable class in Java:::
+ * - Class must be declared as final.
+ * - Data members must be declared as final and private
+ * - No setters
+ * - A parameterised constructor should initialise all the fields performing a deep copy
+ */
