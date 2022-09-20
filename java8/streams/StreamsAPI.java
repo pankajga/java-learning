@@ -136,6 +136,15 @@ public class StreamsAPI {
 		System.out.println(anyMatch); //true
 		System.out.println(noneMatch); //truevv vvv  
 		
+		// top 3 highest salary earning employee*********************************************************************************
+		
+		List<String> empNames = list1.stream()
+				.sorted(Comparator.comparing(Employee::getSalary).reversed())
+				.limit(3)
+				.map(Employee::getName)
+				.collect(Collectors.toList());
+		
+		System.out.println(empNames); //[Rahul, Ashu, Pankaj]
 		
 		// Sequential vs Parallel stream
 		
@@ -156,6 +165,14 @@ public class StreamsAPI {
 		 * https://www.geeksforgeeks.org/parallel-vs-sequential-stream-in-java/
 		 * 
 		 */
+		
+		// create a list
+        List<String> list = Arrays.asList("Hello ", 
+                         "G", "E", "E", "K", "S!");
+  
+        // using parallelStream() 
+        // method for parallel stream
+        list.parallelStream().forEach(System.out::print);  // ES!KGEHelloj; 
 
 	}
 
