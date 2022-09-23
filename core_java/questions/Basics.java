@@ -128,3 +128,33 @@ class Basics {
  * - No setters
  * - A parameterised constructor should initialise all the fields performing a deep copy
  */
+
+/* Fail fast and Fail safe iterator
+ * n this article, I am going to explain how those collections behave which doesn’t iterate as fail-fast. First of all, 
+ * there is no term as fail-safe given in many places as Java SE specifications does not use this term. 
+ * I am using fail safe to segregate between Fail fast and Non fail-fast iterators.
+Concurrent Modification: Concurrent Modification in programming means to modify an object concurrently when another task is 
+already running over it. For example, in Java to modify a collection when another thread is iterating over it. 
+Some Iterator implementations (including those of all the general purpose collection implementations provided by the JRE) may 
+choose to throw ConcurrentModificationException if this behavior is detected.
+ 
+
+Fail Fast And Fail Safe Iterators in Java
+
+Iterators in java are used to iterate over the Collection objects.Fail-Fast iterators immediately throw ConcurrentModificationException 
+if there is structural modification of the collection. Structural modification means adding, removing any element from collection while a 
+thread is iterating over that collection. Iterator on ArrayList, HashMap classes are some examples of fail-fast Iterator.
+Fail-Safe iterators don’t throw any exceptions if a collection is structurally modified while iterating over it. 
+This is because, they operate on the clone of the collection, not on the original collection and that’s why they are called fail-safe 
+iterators. Iterator on CopyOnWriteArrayList, ConcurrentHashMap classes are examples of fail-safe Iterator.
+
+Fail Safe Iterator
+
+First of all, there is no term as fail-safe given in many places as Java SE specifications does not use this term. I am using this term to demonstrate the difference between Fail Fast and Non-Fail Fast Iterator. These iterators make a copy of the internal collection (object array) and iterates over the copied collection. Any structural modification done to the iterator affects the copied collection, not original collection. So, original collection remains structurally unchanged. 
+ 
+
+Fail-safe iterators allow modifications of a collection while iterating over it.
+These iterators don’t throw any Exception if a collection is modified while iterating over it.
+They use copy of original collection to traverse over the elements of the collection.
+These iterators require extra memory for cloning of collection. Ex : ConcurrentHashMap, CopyOnWriteArrayList
+*/

@@ -95,4 +95,19 @@ So we will only acquire lock on the getInstance() once, when the obj is null. Th
 
 We have declared the obj volatile which ensures that multiple threads offer the obj variable correctly when it is being initialized to Singleton 
 instance. This method drastically reduces the overhead of calling the synchronized method every time.
+
+public void geekName(String geek, List<String> list)
+    {
+        // Only one thread is permitted
+        // to change geek's name at a time.
+        synchronized(this)
+        {
+            name = geek;
+            count++;  // how many threads change geek's name.
+        }
+  
+        // All other threads are permitted
+        // to add geek name into list.
+        list.add(geek);
+    }
 */

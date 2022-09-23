@@ -29,3 +29,18 @@ public class BasicCreation {
 	}
 
 }
+
+/* **************************************************************************************************************************************
+ * Synchronized ----
+ * - Synchronized is the modifier applicable only for methods and blocks but not for the variables and for classes.
+ * - If a method or block is declared as synchronized, then only one thread at a time is allowed to execute that method or block on the 
+ * 	 given object so that the data inconsistency problem will be resolved.
+ * - Every object in java has a unique lock. The lock concept will come into picture when we are using a synchronized keyword.
+ * 
+ * Atomic Operation - An atomic operation is an operation which either completes entirely, or doesnot complete at all. Atomic operations cannot
+ * 			partially complete. Atomic operations can help you avoid race conditions in your code.
+ * 
+ * Atomic vs Volatile explained well -- https://www.youtube.com/watch?v=WH5UvQJizH0
+ * 
+ * https://www.baeldung.com/java-volatile-vs-atomic
+ */
