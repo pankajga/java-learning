@@ -1,3 +1,5 @@
+https://www.linkedin.com/pulse/monolithic-vs-soa-microservices-aqib-javed-/
+
 The Baeldung Logo CS Sublogo
 Microservices vs. Service-Oriented Architecture
 
