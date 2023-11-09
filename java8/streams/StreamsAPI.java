@@ -149,14 +149,14 @@ public class StreamsAPI {
 		// Sequential vs Parallel stream
 		
 		/*Sequential Streams are non-parallel streams that use a single thread to process the pipelining. Any stream operation 
-		 * without explicitly specified as parallel is treated as a sequential stream. Sequential stream’s objects are pipelined in a 
+		 * without explicitly specified as parallel is treated as a sequential stream. Sequential streamâ€™s objects are pipelined in a 
 		 * single stream on the same processing system hence it never takes the advantage of the multi-core system even though the 
 		 * underlying system supports parallel execution. Sequential stream performs operation one by one
 		 * 
 		 * It is a very useful feature of Java to use parallel processing, even if the whole program may not be parallelized. 
 		 * Parallel stream leverage multi-core processors, which increases its performance. Using parallel streams, our code gets 
 		 * divide into multiple streams which can be executed parallelly on separate cores of the system and the final result is shown 
-		 * as the combination of all the individual core’s outcomes. It is always not necessary that the whole program be parallelized, 
+		 * as the combination of all the individual coreâ€™s outcomes. It is always not necessary that the whole program be parallelized, 
 		 * but at least some parts should be parallelized which handles the stream. The order of execution is not under our control and 
 		 * can give us unpredictably unordered results and like any other parallel programming, they are complex and error-prone. 
 		 * 
@@ -165,6 +165,76 @@ public class StreamsAPI {
 		 * https://www.geeksforgeeks.org/parallel-vs-sequential-stream-in-java/
 		 * 
 		 */
+
+
+
+	String s1 = "sjxbwkch   ldcjbcjwb";
+        String[] sa1 = s1.split("");
+        Map<String, Integer> m1 = new HashMap<>();
+        for(String s : sa1){
+            if(s != " "){
+                if(m1.get(s) != null){
+                    int i = m1.get(s);
+                    m1.put(s, i+1);
+                }
+                else {
+                    m1.put(s, 1);
+                }
+            }
+        }
+        m1.forEach((k,v) -> {
+            System.out.println(k+" -> "+v);
+        });
+
+        List<Employee> l1 = Arrays.asList(
+            new Employee("Abhi", 123, "Developer"),
+            new Employee("Ram", 345, "Tester"),
+            new Employee("Shital", 245, "Manager"),
+            new Employee("Sneha", 001, "Tester"),
+            new Employee("Shubh", 378, "Developer")
+        );
+        
+        //sort by name
+        List<String> name = l1.stream().sorted((e1,e2) -> e1.name.compareTo(e2.name)).map(e -> e.name).collect(Collectors.toList());
+
+        int max = l1.stream().map(e -> e.id).max(Comparator.comparing(Integer::intValue)).get();
+
+        Map<String, Integer> m2 = l1.stream().collect(Collectors.toMap((e)->e.name, (e)->e.id));
+        System.out.println(m2);
+        String name2 = m2.entrySet().stream().filter(e -> e.getValue() > 300).map(e -> e.getKey()).findFirst().get();
+
+        List<Integer> list1 = new ArrayList<>(Arrays.asList(2,5,1,3,0,9));
+        System.out.println(list1);
+        list1.remove(Integer.valueOf(9));
+        System.out.println(list1);
+        List<Integer> list11 = new ArrayList<>();
+        list11.add(1);
+        list11.add(2);
+        list11.add(4);
+        list11.add(3);
+        int sum = list1.stream().mapToInt(Integer::intValue).sum();
+        System.out.println("sum: "+sum); //sum: 11
+        int sumr = list11.stream().reduce(0,(a,b)->a+b);
+        System.out.println("sumr: "+sumr); //sumr: 10
+        list1.stream().mapToInt(Integer::intValue).average().ifPresentOrElse((data) -> System.out.println("average is: "+data), 
+            () -> System.out.println("no data")); //average is: 2.2
+
+        Optional<Integer> optional = Optional.of(134);
+        System.out.println("optional:"+optional); //optional:Optional[134]
+    }
+}
+
+class Employee {
+    String name;
+    int id;
+    String designation;
+
+    Employee(String name, int id, String designation){
+        this.name = name;
+        this.id = id;
+        this.designation = designation;
+    }
+}
 		
 		// create a list
         List<String> list = Arrays.asList("Hello ", 
