@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /* Simply put, streams are wrappers around a data source, allowing us to operate with that data source
@@ -15,6 +16,36 @@ and making bulk processing convenient and fast.
 A stream does not store data and, in that sense, is not a data structure. It also never modifies the
 underlying data source.
 */
+
+class Employee {
+    String name;
+    String department;
+    int salary;
+
+    Employee(String name, String department, int salary) {
+        this.name = name;
+        this.department = department;
+        this.salary = salary;
+    }
+
+	Employee(String name, int salary, String department) {
+        this.name = name;
+        this.department = department;
+        this.salary = salary;
+    }
+
+	public int getSalary() {
+		return this.salary;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public String getDepartment() {
+		return this.department;
+	}
+}
 
 public class StreamsAPI {
 
@@ -195,15 +226,15 @@ public class StreamsAPI {
         );
         
         //sort by name
-        List<String> name = l1.stream().sorted((e1,e2) -> e1.name.compareTo(e2.name)).map(e -> e.name).collect(Collectors.toList());
+        List<String> name1 = l1.stream().sorted((e1,e2) -> e1.name.compareTo(e2.name)).map(e -> e.name).collect(Collectors.toList());
 
-        int max = l1.stream().map(e -> e.id).max(Comparator.comparing(Integer::intValue)).get();
+        int max = l1.stream().map(e -> e.salary).max(Comparator.comparing(Integer::intValue)).get();
 
-        Map<String, Integer> m2 = l1.stream().collect(Collectors.toMap((e)->e.name, (e)->e.id));
+        Map<String, Integer> m2 = l1.stream().collect(Collectors.toMap((e)->e.name, (e)->e.salary));
         System.out.println(m2);
         String name2 = m2.entrySet().stream().filter(e -> e.getValue() > 300).map(e -> e.getKey()).findFirst().get();
 
-        List<Integer> list1 = new ArrayList<>(Arrays.asList(2,5,1,3,0,9));
+        List<Integer> list3 = new ArrayList<>(Arrays.asList(2,5,1,3,0,9));
         System.out.println(list1);
         list1.remove(Integer.valueOf(9));
         System.out.println(list1);
@@ -212,59 +243,60 @@ public class StreamsAPI {
         list11.add(2);
         list11.add(4);
         list11.add(3);
-        int sum = list1.stream().mapToInt(Integer::intValue).sum();
+        int sum = list11.stream().mapToInt(Integer::intValue).sum();
         System.out.println("sum: "+sum); //sum: 11
         int sumr = list11.stream().reduce(0,(a,b)->a+b);
         System.out.println("sumr: "+sumr); //sumr: 10
-        list1.stream().mapToInt(Integer::intValue).average().ifPresentOrElse((data) -> System.out.println("average is: "+data), 
+        list11.stream().mapToInt(Integer::intValue).average().ifPresentOrElse((data) -> System.out.println("average is: "+data), 
             () -> System.out.println("no data")); //average is: 2.2
 
         Optional<Integer> optional = Optional.of(134);
         System.out.println("optional:"+optional); //optional:Optional[134]
-    }
-}
+    
+//}
 
-class Employee {
-    String name;
-    int id;
-    String designation;
+// class Employee {
+//     String name;
+//     int id;
+//     String designation;
 
-    Employee(String name, int id, String designation){
-        this.name = name;
-        this.id = id;
-        this.designation = designation;
-    }
-}
+//     Employee(String name, int id, String designation){
+//         this.name = name;
+//         this.id = id;
+//         this.designation = designation;
+//     }
+// }
 		
 		// create a list
-        List<String> list = Arrays.asList("Hello ", 
+        List<String> list23 = Arrays.asList("Hello ", 
                          "G", "E", "E", "K", "S!");
   
         // using parallelStream() 
         // method for parallel stream
-        list.parallelStream().forEach(System.out::print);  // ES!KGEHelloj; 
-
-	}
-
-}
-
-class Employee {
-	String name;
-	String department;
-	int salary;
-	public Employee(String name, String department, int salary) {
-		super();
-		this.name = name;
-		this.department = department;
-		this.salary = salary;
-	}
-	public String getName() {
-		return name;
-	}
-	public String getDepartment() {
-		return department;
-	}
-	public int getSalary() {
-		return salary;
+        list23.parallelStream().forEach(System.out::print);  // ES!KGEHelloj; 
+		
 	}
 }
+
+//}
+
+// class Employee {
+// 	String name;
+// 	String department;
+// 	int salary;
+// 	public Employee(String name, String department, int salary) {
+// 		super();
+// 		this.name = name;
+// 		this.department = department;
+// 		this.salary = salary;
+// 	}
+// 	public String getName() {
+// 		return name;
+// 	}
+// 	public String getDepartment() {
+// 		return department;
+// 	}
+// 	public int getSalary() {
+// 		return salary;
+// 	}
+// }
