@@ -1,7 +1,6 @@
 package map;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -51,7 +50,7 @@ public class MapRelated {
 // HashTable is synchronized - hashMap is not
 // HashTable doesnot allow nulls - hashMap does
 // basic implementation of HashMaps in Java using an array of linked lists.
-// In order to avoid collisions, we’re implementing HashMap using linked lists. 
+// In order to avoid collisions, weï¿½re implementing HashMap using linked lists. 
 // Why exactly are linked lists? 
 /* If we wanted to resolve the problem of collisions, there was a choice to use just arrays only. 
 We could move to the next index once there is a collision on some. 
@@ -59,7 +58,7 @@ We could move to the next index once there is a collision on some.
 But the problem with arrays is that their size needs to be defined. And since in the worst case there can be many collisions,
 using an array is not so efficient. 
 
-So we basically need a data structure whose size doesn’t need to be defined. Thus, an array of linked lists is 
+So we basically need a data structure whose size doesnï¿½t need to be defined. Thus, an array of linked lists is 
 the most appropriate. And the linked lists are referred to as buckets here, which means we have an array of buckets.
 
 Hash code in java is an integer associated with each object which helps in the hashing method by finding the index of the array
@@ -67,7 +66,7 @@ where the object should be placed. This integer is calculated by calling a hashC
 
 Implementation
 Defining class
-First, we’ll define and initiate a class representing a node of a linked list which will have two attributes, namely, key and value.
+First, weï¿½ll define and initiate a class representing a node of a linked list which will have two attributes, namely, key and value.
 
 Initializing the buckets
 The steps are as follows:
@@ -77,7 +76,7 @@ Declare an array of linked lists
 Call an initbuckets() function which initializes each bucket with an empty linked list
 
 Insertion
-Before we proceed, let’s have a recap of what’s hash code is.
+Before we proceed, letï¿½s have a recap of whatï¿½s hash code is.
 
 Hash code in java is an integer associated with each object which helps in the hashing method by finding the index of the array where the object should be placed. This integer is calculated by calling a hashCode() function which is inbuilt in the object class. 
 
@@ -97,9 +96,9 @@ Then, we got to the linked list present at this index.
 If in that linked list there is no such key present (which is basically being checked by the getIndexWithinBucket() function), 
 we make a new node with the key-value pair, place it at the index and increase the size by 1.
 
-Otherwise, if there is any such key present, we update the value of “value” for that key. 
+Otherwise, if there is any such key present, we update the value of ï¿½valueï¿½ for that key. 
 Implementation of Insertion
-The function put() is used for inserting. Now, let’s see the implementation of the above approach.
+The function put() is used for inserting. Now, letï¿½s see the implementation of the above approach.
 */
 
 
