@@ -95,7 +95,13 @@ Idea about var args, Hashcode and Equals, Streams vs Collections?
 Try with Resources, Object class Methods, Default size of ArrayList etc.?
 What will happen if we try to remove any element from list without adding into it? eg List.remove(0) ?
 what will happen if we execute the following statement
-int a = Integer.parseInt(�text�); (Answer)*/
+int a = Integer.parseInt(�text�); (Answer)
+
+Difference between == and equals?
+Both are used for comparisons, since primitive data is stored in stack so while using == the value is compared.
+Whereas for Objects the actual object is stored in Heap and reference to that memory address is stored
+in stack hence the memory address is returned if we use == for object comparison.
+*/
 
 public class Basics_1_0 {
 
