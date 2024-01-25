@@ -1,9 +1,16 @@
 package streams;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 class Employee1 {
@@ -32,7 +39,7 @@ class Employee1 {
 }
 
 class Test {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         //Employee1 e1 = new Employee1(1, "Ram", 1231, "Developer");
         List<Employee1> employeeList = Arrays.asList(
             new Employee1(1, "Ram", 1231, "Developer"),
@@ -64,5 +71,58 @@ class Test {
         Integer max = employeeList.stream().map(v -> v.getSalary()).max(Comparator.comparing(Integer::intValue)).get();
         System.out.println("max: "+max);
 
+
+
+        Map<String, Integer> hmap = new HashMap<>();
+        hmap.put("Pankaj", 1021);
+        hmap.put("Gaurav", 121);
+        hmap.put("Ram", 222);
+        hmap.put("Suresh", 1111);
+        hmap.put("Nikhil", 4444);
+        hmap.put("Raj", 122);
+
+        Map<String, Integer> lhmap = new HashMap<>();
+        lhmap.put("Pankaj", 1021);
+        lhmap.put("Gaurav", 121);
+        lhmap.put("Ram", 222);
+        lhmap.put("Suresh", 1111);
+        lhmap.put("Nikhil", 4444);
+        lhmap.put("Raj", 122);
+
+        for(Entry<String, Integer> entry : hmap.entrySet()) {
+            System.out.println("Key = " + entry.getKey() + 
+                             ", Value = " + entry.getValue());
+        }
+        // Key = Quiz, Value = www.geeksforgeeks.org
+        // Key = Practice, Value = practice.geeksforgeeks.org
+        // Key = GFG, Value = geeksforgeeks.org
+        // Key = Code, Value = code.geeksforgeeks.org
+
+        Iterator<Entry<String, Integer>> itr = hmap.entrySet().iterator();
+        while(itr.hasNext()) {
+            Entry<String, Integer> entry = itr.next();
+            System.out.println("Key = " + entry.getKey() +  
+                                 ", Value = " + entry.getValue()); 
+        }
+
+        Map<String,Integer> mapy = hmap.entrySet().stream()
+                .sorted(Comparator.comparing(Map.Entry::getValue))
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,(e1, e2) -> e1, LinkedHashMap::new));
+
+        System.out.println("mapy: "+mapy);
+        // we needed to store the above in a new linked hashmap as hashmap doesnt maintain insertion order.
+
+        Map<String, Integer> hmapy = lhmap.entrySet().stream()
+            .sorted(Comparator.comparing(Map.Entry::getValue))
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1,e2)-> e1, LinkedHashMap::new));
+        System.out.println("hmapy: "+hmapy);
+
+
+        //Read a file
+        File myFile = new File("filename.txt");
+        Scanner myScanner = new Scanner(myFile);
+        while(myScanner.hasNextLine()){
+            String data = myScanner.nextLine();
+        }
     }
 }
