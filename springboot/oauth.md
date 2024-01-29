@@ -22,7 +22,7 @@ https://athiththan11.medium.com/oauth-2-grant-types-a-story-guide-582580a3c4c2
 - Refresh Token Grant
 
 
-### Authorization Code Grant Type
+## Authorization Code Grant Type
 The Authorization Code Grant Type is the most commonly used grant type to authorize theClient to access protected data from a Resource Server.
 
 The Story … Athiththan tries to sign-up himself with the Medium platform using his Facebook account (because he already has an active FB profile) without totally registering with the platform from scratch. Therefore, he chose the Sign-Up using Facebook option.
@@ -38,7 +38,7 @@ The Medium stored the temporary Authorization Code and made a POST request to th
 As a response, the Authorization Server returned a JSON response embedding the access_token and other related data.
 
 
-### Implicit Grant Type
+## Implicit Grant Type
 
 The Implicit Grant Type is intended to be used by user-agent based clients (Example: SPA), which can’t keep a client secret because all of the application code and storage is easily accessible.
 
@@ -53,7 +53,7 @@ So, when Athiththan chose the Sign-Up using Facebook option, the Medium transmit
 As a response, the Authorization Server shipped back the actualAccess Token back to the Redirect URI which was defined in the GET request as Query Parameters.
 
 
-### Resource Owner Credentials Grant Type
+## Resource Owner Credentials Grant Type
 
 The Resource Owner Credentials Grant Type uses the username and the password credentials of a Resource Owner (user) to authorize and access protected data from a Resource Server.
 
@@ -68,7 +68,7 @@ So, when Athiththan chose to log-in with Facebook, the application displayed an 
 As a response, the Authorization Server delivered a JSON embedding the access_token and other related data.
 
 
-### Client Credentials Grant Type
+## Client Credentials Grant Type
 
 The Client Credentials Grant Type uses the client_id and the client_secret credentials of a Client to authorize and access protected data from a Resource Server.
 
@@ -85,7 +85,7 @@ As a response, the Authorization Server conveyed a JSON embedding the access_tok
 ** But, this time, the response will not contain any refresh_token, which used to gain new access_token from the Authorization Server.
 
 
-### Refresh Token Grant
+## Refresh Token Grant
 
 The Refresh Token Grant Flow is specially used to gain new access_token from the Authorization Server by providing the refresh_token to the Token Endpoint.
 
