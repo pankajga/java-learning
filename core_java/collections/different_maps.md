@@ -51,11 +51,12 @@ It is same as HashMap instead maintains ascending order(Sorted using the natural
 
 ### Hashtable
 4. Hashtable: “Hashtable” is the generic name for hash-based maps. 
-Syntax: 
+Syntax:
 
+```
 public class Hashtable extends Dictionary implements
 Map, Cloneable, Serializable
- 
+ ```
 
 A Hashtable is an array of list. Each list is known as a bucket. The position of bucket is identified by calling the hashcode() method. A Hashtable contains values based on the key.
 It contains only unique elements.
