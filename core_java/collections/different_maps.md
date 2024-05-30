@@ -122,3 +122,78 @@ Suppose you were creating a mapping of names to Person objects. You might want t
 A TreeMap also offers a way to, given a name, output the next 10 people. This could be useful for a “More”function in many applications.
 A LinkedHashMap is useful whenever you need the ordering of keys to match the ordering of insertion. This might be useful in a caching situation, when you want to delete the oldest item.
 Generally, unless there is a reason not to, you would use HashMap. That is, if you need to get the keys back in insertion order, then use LinkedHashMap. If you need to get the keys back in their true/natural order, then use TreeMap. Otherwise, HashMap is probably best. It is typically faster and requires less overhead.
+
+
+### HashMap vs ConcurrentHashMap
+
+* HashMap is non-Synchronized in nature i.e. HashMap is not Thread-safe whereas ConcurrentHashMap is Thread-safe in nature.
+
+* HashMap performance is relatively high because it is non-synchronized in nature and any number of threads can perform simultaneously. But ConcurrentHashMap performance is low sometimes because sometimes Threads are required to wait on ConcurrentHashMap.
+
+* While one thread is Iterating the HashMap object, if other thread try to add/modify the contents of Object then we will get Run-time exception saying ConcurrentModificationException.Whereas In ConcurrentHashMap we wont get any exception while performing any modification at the time of Iteration.
+
+* In HashMap, null values are allowed for key and values, whereas in ConcurrentHashMap null value is not allowed for key and value, otherwise we will get Run-time exception saying NullPointerException.
+
+* HashMap is introduced in JDK 1.2 whereas ConcurrentHashMap is introduced by SUN Microsystem in JDK 1.5.
+
+* https://www.geeksforgeeks.org/difference-hashmap-concurrenthashmap/
+
+
+### ConcurrentHashMap vs Synchronized Map
+
+* ConcurrentHashMap is a class which implements the ConcurrentMap interface. It uses Hashtable, underlined data structure. 
+
+* As we know, while dealing with thread in our application HashMap is not a good choice because of the performance issue. To resolve this issue, we use ConcurrentHashMap in our application.  ConcurrentHashMap is thread-safe therefore multiple threads can operate on a single object without any problem. 
+
+* In ConcurrentHashMap, the Object is divided into a number of segments according to the concurrency level. By default, it allows 16 thread to read and write from the Map without any synchronization. In ConcurrentHashMap, at a time any number of threads can perform retrieval operation but for updating in the object, the thread must lock the particular segment in which the thread wants to operate. 
+
+* This type of locking mechanism is known as Segment locking or bucket locking. Hence, at a time16 update operations can be performed by threads.
+
+
+*  Java HashMap is a non-synchronized collection class. If we need to perform thread-safe operations on it then we must need to synchronize it explicitly. 
+
+* The synchronizedMap() method of java.util.Collections class is used to synchronize it. It returns a synchronized (thread-safe) map backed by the specified map. 
+
+```
+// Java program to demonstrate the
+// working of Synchronized HashMap
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+public class SynchronizedHashMap {
+	public static void main(String args[])
+	{
+
+		// Creating a HashMap
+		HashMap<Integer, String> hmap
+			= new HashMap<Integer, String>();
+
+		// Adding the elements using put method
+		hmap.put(10, "Geeks");
+		hmap.put(20, "for");
+		hmap.put(30, "Geeks");
+		hmap.put(25, "Welcome");
+		hmap.put(40, "you");
+
+		// Creating a synchronized map
+		Map map = Collections.synchronizedMap(hmap);
+		Set set = map.entrySet();
+
+		// Synchronize on HashMap, not on set
+		synchronized (map)
+		{
+			Iterator i = set.iterator();
+			// Printing the elements
+			while (i.hasNext()) {
+				Map.Entry me = (Map.Entry)i.next();
+				System.out.print(me.getKey() + ": ");
+				System.out.println(me.getValue());
+			}
+		}
+	}
+}
+```
