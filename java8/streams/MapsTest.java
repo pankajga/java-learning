@@ -1,7 +1,9 @@
 package streams;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class MapsTest {
     
@@ -27,5 +29,23 @@ public class MapsTest {
         System.out.println(map1); // {Netherland=Amsterdam, England=London, France=Paris}
         System.out.println(map2); // {Netherland=Amsterdam, England=London->London, France=Italy->Paris, India=New Delhi}
 
+        String name = "My name is this and that";
+        String[] nameArray = name.split("");
+        Map<String, Long> countMap = Arrays.stream(nameArray).filter(val -> !val.trim().equals("")).collect(Collectors.groupingBy(val -> val, Collectors.counting()));
+        
+        countMap.forEach((k,v) -> {
+            System.out.println(k + " - " + v);
+        });
+        // a - 3
+        // s - 2
+        // d - 1
+        // t - 3
+        // e - 1
+        // h - 2
+        // i - 2
+        // y - 1
+        // m - 1
+        // M - 1
+        // n - 2
     }
 }
