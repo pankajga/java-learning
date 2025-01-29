@@ -1,7 +1,10 @@
-interface customBiFunction {
+interface CustomBiFunction {
   Integer add (int x, int y);
 }
 
-Integer result = (x,y) -> x+y;
+class MyCustomBiFunction {
+  
+  CustomBiFunction result = (x,y) -> x+y;
 
-Integer sum = result (3,4);
+  Integer sum = result.add (3,4);
+}
