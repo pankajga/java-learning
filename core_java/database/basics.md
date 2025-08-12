@@ -1,0 +1,4 @@
+- JDBC: is the raw, low-level API.
+- JPA: is a specification for ORM, providing an abstraction over JDBC.
+- Hibernate: is a concrete implementation of the JPA specification.
+- Spring Data JPA: builds on top of JPA (and thus Hibernate) to further simplify data access in Spring applications by automating repository implementations.
